@@ -1,8 +1,7 @@
 /**
  * PCA9685
  */
-//% weight=100 color=#0fbc11 icon=""
-//% color="#794044" weight=10 icon="\uf108" block="PCA9685舵机模块"
+//% color="#0fbc11" weight=12 icon="\uf108" block="PCA9685舵机模块"
 //% category="PCA9685舵机模块"
 namespace PCA9685 {
     let _DEBUG: boolean = false
@@ -190,7 +189,7 @@ namespace PCA9685 {
      * @param onStep The range offset (0-4095) to turn the signal on
      * @param offStep The range offset (0-4095) to turn the signal off
      */
-    //% block="设置模块引脚 $pinNumber|的脉宽范围，通=$onStep|，断=$offStep|，地址=$chipAddress" group="PCA9685"  advanced=true
+    //% block="设置模块引脚 $pinNumber|的脉宽范围，通 $onStep|，断 $offStep|，地址 $chipAddress" group="PCA9685"  advanced=true
     export function setPinPulseRange(pinNumber: PinNum = 0, onStep: number = 0, offStep: number = 2048, chipAddress: number = 0x40): void {
         pinNumber = Math.max(0, Math.min(15, pinNumber))
         const buffer = pins.createBuffer(2)
@@ -220,7 +219,7 @@ namespace PCA9685 {
      * @param ledNumber The number (1-16) of the LED to set the duty cycle on
      * @param dutyCycle The duty cycle (0-100) to set the LED to
      */
-    //% block="设置模块引脚 $ledNum|的占空比为 $dutyCycle|，地址=$chipAddress" group="PCA9685"  advanced=true
+    //% block="设置模块引脚 $ledNum|的占空比为 $dutyCycle|，地址 $chipAddress" group="PCA9685"  advanced=true
     export function setLedDutyCycle(ledNum: PinNum = 0, dutyCycle: number, chipAddress: number = 0x40): void {
         ledNum = Math.max(0, Math.min(15, ledNum))
         dutyCycle = Math.max(0, Math.min(100, dutyCycle))
@@ -244,7 +243,7 @@ namespace PCA9685 {
      * @param servoNum The number (1-16) of the servo to move
      * @param degrees The degrees (0-180) to move the servo to
      */
-    //% block="将$servoNum|号引脚上的180度舵机转到角度 $degrees|，地址=$chipAddress" group="PCA9685" 
+    //% block="将模块$servoNum|号引脚上的180度舵机转到角度 $degrees|，地址 $chipAddress" group="PCA9685" 
     export function setServoPosition(servoNum: PinNum = 0, degrees: number, chipAddress: number = 0x40): void {
         const chip = getChipConfig(chipAddress)
         servoNum = Math.max(0, Math.min(15, servoNum))
@@ -267,7 +266,7 @@ namespace PCA9685 {
      * @param servoNum The number (1-16) of the servo to move
      * @param speed [-100-100] The speed (-100-100) to turn the servo at
      */
-    //% block="将$servoNum|号引脚上的360度舵机转到角度 $degrees|，地址=$chipAddress" group="PCA9685" 
+    //% block="将模块$servoNum|号引脚上的360度舵机转到角度 $degrees|，地址 $chipAddress" group="PCA9685" 
     export function setCRServoPosition(servoNum: PinNum = 0, speed: number, chipAddress: number = 0x40): void {
         const chip = getChipConfig(chipAddress)
         const freq = chip.freq
@@ -303,7 +302,7 @@ namespace PCA9685 {
      * @param maxTimeCs The maximum centiseconds (0-1000) to leave the servo on for; eg: 25
      * @param midTimeCs The mid (90 degree for regular or off position if continuous rotation) for the servo; eg: 15
      */
-    //% block="将$servoNum|号引脚上的舵机脉宽限制为：最小$minTimeCs|，最大=$maxTimeCs，中间=$midTimeCs,地址=$chipAddress" group="PCA9685"  advanced=true
+    //% block="将模块$servoNum|号引脚上的舵机脉宽限制为：最小$minTimeCs|，最大$maxTimeCs，中间 $midTimeCs,地址 $chipAddress" group="PCA9685"  advanced=true
     export function setServoLimits(servoNum: PinNum = 0, minTimeCs: number = 5, maxTimeCs: number = 2.5, midTimeCs: number = -1, chipAddress: number = 0x40): void {
         const chip = getChipConfig(chipAddress)
         servoNum = Math.max(1, Math.min(16, servoNum))
@@ -321,7 +320,7 @@ namespace PCA9685 {
      * @param chipAddress [64-125] The I2C address of your PCA9685; eg: 64
      * @param freq [40-1000] Frequency (40-1000) in hertz to run the clock cycle at; eg: 50
      */
-    //% block="初始化模块,地址=$chipAddress" group="PCA9685"  advanced=true
+    //% block="初始化模块,地址 $chipAddress" group="PCA9685"  advanced=true
     export function init(chipAddress: number = 0x40, newFreq: number = 50) {
         debug(`Init chip at address ${chipAddress} to ${newFreq}Hz`)
         const buf = pins.createBuffer(2)
@@ -347,7 +346,7 @@ namespace PCA9685 {
      * Used to reset the chip, will cause the chip to do a full reset and turn off all outputs.
      * @param chipAddress [64-125] The I2C address of your PCA9685; eg: 64
      */
-    //% block="重置模块,地址=$chipAddress" group="PCA9685" 
+    //% block="重置模块,地址 $chipAddress" group="PCA9685" 
     export function reset(chipAddress: number = 0x40): void {
         return init(chipAddress, getChipConfig(chipAddress).freq);
     }
@@ -356,7 +355,7 @@ namespace PCA9685 {
      * Used to reset the chip, will cause the chip to do a full reset and turn off all outputs.
      * @param hexAddress The hex address to convert to decimal; eg: 0x40
      */
-    //% block="设置模块地址为$chipAddress" group="PCA9685"
+    //% block="设置模块地址为 $hexAddress" group="PCA9685"
     export function chipAddress(hexAddress: string): number {
         hexAddress = stripHexPrefix(hexAddress)
         let dec = 0
