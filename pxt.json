@@ -1,0 +1,18 @@
+{
+    "name": "pca9685舵机驱动模块类库 by文小闲@创之翼",
+    "version": "1.0.0",
+    "description": "这是一个中文版的让micro:bit控制PCA9685舵机驱动模块的扩展",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "pca9685.ts",
+        "README.md",
+		"_locales/zh/pca9685-strings.json"        
+    ],
+    "testFiles": [
+      "tests.ts"
+    ],
+    "public": true
+}
