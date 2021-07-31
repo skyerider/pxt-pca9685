@@ -266,7 +266,7 @@ namespace PCA9685 {
      * @param servoNum The number (1-16) of the servo to move
      * @param speed [-100-100] The speed (-100-100) to turn the servo at
      */
-    //% block="将模块$servoNum|号引脚上的360度舵机以速度$speed|旋转，地址 $chipAddress" group="PCA9685" 
+    //% block="将模块$servoNum|号引脚上的360度舵机以速度$speed|旋转，地址$chipAddress" group="PCA9685" 
     export function setCRServoPosition(servoNum: PinNum = 0, speed: number, chipAddress: number = 0x40): void {
         const chip = getChipConfig(chipAddress)
         const freq = chip.freq
@@ -302,7 +302,7 @@ namespace PCA9685 {
      * @param maxTimeCs The maximum centiseconds (0-1000) to leave the servo on for; eg: 25
      * @param midTimeCs The mid (90 degree for regular or off position if continuous rotation) for the servo; eg: 15
      */
-    //% block="将模块$servoNum|号引脚上的舵机脉宽限制为：最小$minTimeCs|，最大$maxTimeCs，中间 $midTimeCs,地址 $chipAddress" group="PCA9685"  advanced=true
+    //% block="限制模块$servoNum|号引脚上的舵机脉宽,最小$minTimeCs|,最大$maxTimeCs,中间 $midTimeCs,地址 $chipAddress" group="PCA9685"  advanced=true
     export function setServoLimits(servoNum: PinNum = 0, minTimeCs: number = 5, maxTimeCs: number = 2.5, midTimeCs: number = -1, chipAddress: number = 0x40): void {
         const chip = getChipConfig(chipAddress)
         servoNum = Math.max(1, Math.min(16, servoNum))
